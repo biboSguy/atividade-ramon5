@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+</head>
+<body>
+    <div class="container">
+        <input type="number" id="guessInput" placeholder="Digite seu palpite">
+        <button onclick="checkGuess()">Enviar</button>
+        <p id="resultMessage"></p>
+        <button onclick="resetGame()">Reiniciar Jogo</button>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        const resultMessage = document.getElementById('resultMessage');
+        console.log(randomNumber)
+
+        function checkGuess() {
+            const userGuess = Number(document.getElementById('guessInput').value);
+            if (userGuess > randomNumber) {
+                resultMessage.textContent = 'Valor muito alto';
+            } else if (userGuess < randomNumber) {
+                resultMessage.textContent = 'Valor muito baixo';
+            } else {
+                resultMessage.innerHTML = 'Parabéns! Você acertou! <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Clique aqui para comemorar!</a>';
+            }
+        }
+
+        function resetGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            resultMessage.textContent = '';
+            document.getElementById('guessInput').value = '';
+            console.log(randomNumber)
+        }
+    </script>
+</body>
+</html>
